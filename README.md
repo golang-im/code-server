@@ -1,2 +1,2 @@
 # code-server
-customize code server for golang 
+customize code server image for golang developing.
