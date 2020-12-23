@@ -21,11 +21,10 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
     ~/.fzf/install
 
 
+
+
 USER 1000
 
-ENV GOROOT /usr/local/go
-ENV GOPATH /home/coder/work/go
-ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 # install extensions
 RUN code-server --install-extension golang.Go && \
@@ -36,6 +35,12 @@ RUN code-server --install-extension golang.Go && \
     code-server --install-extension ms-python.python && \
     code-server --install-extension WakaTime.vscode-wakatime && \
     code-server --install-extension bajdzis.vscode-database
+
+ENV GOROOT /usr/local/go
+ENV GOPATH /home/coder/work/go
+ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
+
+
 
 
 WORKDIR /home/coder
