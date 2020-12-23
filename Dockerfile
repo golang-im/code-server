@@ -8,10 +8,10 @@ ARG GOVERSION=1.5.6
 RUN ARCH="$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')" && \
     curl -fsSL "https://dl.google.com/go/go$GOVERSION.linux-$ARCH.tar.gz" | tar -C /usr/local -xz
 
-# ## kubectl
-# RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
-#     chmod +x ./kubectl && \
-#     mv ./kubectl /usr/local/bin/kubectl
+## kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+    chmod +x ./kubectl && \
+    mv ./kubectl /usr/local/bin/kubectl
 
 # kubectx/kubens/fzf
 RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
@@ -26,6 +26,16 @@ USER 1000
 ENV GOROOT /usr/local/go
 ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
+
+# install extensions
+RUN code-server --install-extension golang.Go && \
+    code-server --install-extension MS-CEINTL.vscode-language-pack-zh-hans && \
+    code-server --install-extension waderyan.gitblame && \
+    code-server --install-extension yzhang.markdown-all-in-one && \
+    code-server --install-extension jebbs.plantuml && \
+    code-server --install-extension ms-python.python && \
+    code-server --install-extension WakaTime.vscode-wakatime && \
+    code-server --install-extension bajdzis.vscode-database
 
 
 WORKDIR /home/coder
