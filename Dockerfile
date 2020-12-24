@@ -2,6 +2,9 @@ FROM codercom/code-server:3.8.0
 
 USER root 
 
+RUN apt-get update && apt-get install zsh
+
+
 ARG GOVERSION=1.15.6
 
 # Install Go.
