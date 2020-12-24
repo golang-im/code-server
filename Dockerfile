@@ -2,7 +2,7 @@ FROM codercom/code-server:3.8.0
 
 USER root 
 
-RUN apt-get update && apt-get install zsh
+RUN apt-get update && apt-get install -y zsh
 
 
 ARG GOVERSION=1.15.6
