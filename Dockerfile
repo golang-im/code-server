@@ -43,7 +43,7 @@ ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-ADD ./zshrc /home/coder/.zshrc
+ADD ./.zshrc /home/coder/.zshrc
 
 
 WORKDIR /home/coder
