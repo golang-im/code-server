@@ -45,7 +45,6 @@ ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 # install oh-my-zsh
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
 ADD ./.zshrc /home/coder/.zshrc
-RUN source /home/coder/.zshrc
 RUN git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 && \
     ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
 
