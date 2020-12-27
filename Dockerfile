@@ -4,10 +4,10 @@ USER root
 
 RUN apt-get update && apt-get install -y \
     zsh \
-    nodejs \ 
+    nodejs 
 
 
-    ARG GOVERSION=1.15.6
+ARG GOVERSION=1.15.6
 
 # Install Go.
 RUN ARCH="$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')" && \
