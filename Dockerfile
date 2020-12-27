@@ -2,10 +2,12 @@ FROM codercom/code-server:3.8.0
 
 USER root 
 
-RUN apt-get update && apt-get install -y zsh
+RUN apt-get update && apt-get install -y \
+    zsh \
+    nodejs \ 
 
 
-ARG GOVERSION=1.15.6
+    ARG GOVERSION=1.15.6
 
 # Install Go.
 RUN ARCH="$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')" && \
@@ -45,8 +47,8 @@ ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 # install oh-my-zsh
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
 ADD ./.zshrc /home/coder/.zshrc
-RUN git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 && \
-    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
+RUN npm install -g spaceship-prompt
+
 
 WORKDIR /home/coder
 ENTRYPOINT ["/usr/bin/entrypoint.sh", "--bind-addr", "0.0.0.0:8080", "."]
