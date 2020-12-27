@@ -4,10 +4,12 @@ USER root
 
 RUN apt-get update && apt-get install -y \
     zsh \
-    nodejs 
+    nodejs \
+    npm \
 
 
-ARG GOVERSION=1.15.6
+
+    ARG GOVERSION=1.15.6
 
 # Install Go.
 RUN ARCH="$(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/')" && \
@@ -25,7 +27,8 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \
     ~/.fzf/install
 
-
+# spacevim
+RUN curl -sLf https://spacevim.org/cn/install.sh | bash
 
 USER 1000
 
