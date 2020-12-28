@@ -4,8 +4,7 @@ USER root
 
 # RUN chsh -s /bin/bash
 # ENV SHELL=/bin/bash
-
-ADD ./.zshrc /home/coder/.zshrc
+ADD ./.zshrc /home/root/.zshrc
 
 ADD install.sh /tmp/install.sh
 RUN /tmp/install.sh
@@ -53,6 +52,7 @@ ENV GOROOT /usr/local/go
 ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
+ADD ./.zshrc /home/coder/.zshrc
 
 
 WORKDIR /home/coder
