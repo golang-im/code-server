@@ -31,14 +31,17 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
 RUN curl -sLf https://spacevim.org/cn/install.sh | bash
 
 
+
+
+USER 1000
+
+ENV SHELL=/bin/zsh
+
 # install oh-my-zsh
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
+RUN zsh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
 ADD ./.zshrc /home/coder/.zshrc
 RUN git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 &&\
     ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
-
-# USER 1000
-
 
 # install extensions
 RUN code-server --install-extension golang.Go && \
