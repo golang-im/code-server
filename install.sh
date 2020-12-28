@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-apt-get update && apt-get install -y wget sudo zsh
+apt-get update && apt-get install -y wget sudo zsh unzip
 
 
 echo "Install terraform"
