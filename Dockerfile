@@ -55,7 +55,7 @@ ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 
 RUN wget -O- https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh 
-RUN sudo bash install.sh
+RUN sudo zsh ./install.sh
 #ADD ./.zshrc /home/coder/.zshrc
 
 
