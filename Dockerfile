@@ -2,6 +2,9 @@ FROM codercom/code-server:3.8.0
 
 USER root 
 
+RUN chsh -s /bin/bash
+ENV SHELL=/bin/bash
+
 RUN apt-get update && apt-get install -y \
     zsh 
 
@@ -27,10 +30,15 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
 # spacevim
 RUN curl -sLf https://spacevim.org/cn/install.sh | bash
 
-USER 1000
 
-RUN chsh -s /bin/bash
-ENV SHELL=/bin/bash
+# install oh-my-zsh
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
+ADD ./.zshrc /home/coder/.zshrc
+RUN git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 &&\
+    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
+
+# USER 1000
+
 
 # install extensions
 RUN code-server --install-extension golang.Go && \
@@ -45,12 +53,6 @@ RUN code-server --install-extension golang.Go && \
 ENV GOROOT /usr/local/go
 ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
-
-# install oh-my-zsh
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
-ADD ./.zshrc /home/coder/.zshrc
-RUN git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 &&\
-    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
 
 
 WORKDIR /home/coder
