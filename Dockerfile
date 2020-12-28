@@ -54,8 +54,8 @@ ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 
-RUN wget -O- https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh 
-RUN sudo zsh ./install.sh
+RUN wget  https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /tmp/install.sh
+RUN sudo zsh /tmp/install.sh
 #ADD ./.zshrc /home/coder/.zshrc
 
 
