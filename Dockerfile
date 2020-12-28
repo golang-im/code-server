@@ -5,9 +5,9 @@ USER root
 RUN chsh -s /bin/bash
 ENV SHELL=/bin/bash
 
-RUN apt-get update && apt-get install -y \
-    zsh 
 
+ADD install.sh /tmp/install.sh
+RUN /tmp/install.sh
 
 ARG GOVERSION=1.15.6
 
