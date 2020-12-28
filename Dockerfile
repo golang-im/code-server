@@ -2,12 +2,16 @@ FROM codercom/code-server:3.8.0
 
 USER root 
 
-RUN chsh -s /bin/bash
-ENV SHELL=/bin/bash
+# RUN chsh -s /bin/bash
+# ENV SHELL=/bin/bash
 
+ADD ./.zshrc /home/coder/.zshrc
 
 ADD install.sh /tmp/install.sh
 RUN /tmp/install.sh
+
+RUN chsh -s /bin/zsh
+ENV SHELL=/bin/zsh
 
 ARG GOVERSION=1.15.6
 
@@ -49,7 +53,7 @@ ENV GOROOT /usr/local/go
 ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
-#ADD ./.zshrc /home/coder/.zshrc
+
 
 WORKDIR /home/coder
 ENTRYPOINT ["/usr/bin/entrypoint.sh", "--bind-addr", "0.0.0.0:8080", "."]
