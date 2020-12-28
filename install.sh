@@ -14,3 +14,6 @@ mv terraform /usr/bin/terraform
 
 echo "Install tflint"
 wget https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh && bash install_linux.sh
+
+echo "Install oh my zsh"
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
