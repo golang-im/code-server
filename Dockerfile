@@ -54,7 +54,7 @@ ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
-RUN ./.zshrc /home/coder/.zshrc
+ADD ./.zshrc /home/coder/.zshrc
 
 
 WORKDIR /home/coder
