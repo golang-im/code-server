@@ -5,8 +5,6 @@ USER root
 RUN apt-get update && apt-get install -y \
     zsh 
 
-RUN chsh -s /bin/bash
-ENV SHELL=/bin/bash
 
 ARG GOVERSION=1.15.6
 
@@ -31,6 +29,8 @@ RUN curl -sLf https://spacevim.org/cn/install.sh | bash
 
 USER 1000
 
+RUN chsh -s /bin/bash
+ENV SHELL=/bin/bash
 
 # install extensions
 RUN code-server --install-extension golang.Go && \
