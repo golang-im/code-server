@@ -33,10 +33,11 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
 # spacevim
 RUN curl -sLf https://spacevim.org/cn/install.sh | bash
 
-ENV SHELL=/bin/zsh
+
 
 USER 1000
 
+ENV SHELL=/bin/zsh
 
 # install extensions
 RUN code-server --install-extension golang.Go && \
@@ -53,10 +54,10 @@ ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
-ADD ./.zshrc /home/coder/.zshrc
+RUN wget -O- https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh 
+RUN sudo bash install.sh
+#ADD ./.zshrc /home/coder/.zshrc
 
 
 WORKDIR /home/coder
 ENTRYPOINT ["/usr/bin/entrypoint.sh", "--bind-addr", "0.0.0.0:8080", "."]
-CMD ["zsh"]
