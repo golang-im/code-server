@@ -52,7 +52,9 @@ ENV GOROOT /usr/local/go
 ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
-ADD ./.zshrc /home/coder/.zshrc
+
+RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN ./.zshrc /home/coder/.zshrc
 
 
 WORKDIR /home/coder
