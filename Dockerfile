@@ -54,9 +54,10 @@ ENV GOPATH /home/coder/work/go
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 
+ENV ZSH  /home/coder/.oh-my-zsh
 RUN sudo  sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-#ADD ./.zshrc /home/coder/.zshrc
+ADD ./.zshrc /home/coder/.zshrc
 
 
 WORKDIR /home/coder
