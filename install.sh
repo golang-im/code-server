@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-apt-get update && apt-get install -y wget sudo zsh unzip vim npm
+apt-get update && apt-get install -y wget sudo zsh unzip vim nodejs npm
 
 
 echo "Install terraform"
